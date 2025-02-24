@@ -1,0 +1,31 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: mongo
+    volumes:
+      - ./database:/data/db
+  
+  backend:
+    container_name: backend
+    build: 
+      context: ./backend/
+      dockerfile: Dockerfile
+    command: npm run start
+    ports:
+      - "8090:8090"
+    depends_on:
+      - mongo
+  
+  # frontend:
+  #   container_name: front
+  #   build: 
+  #     context: ./frontend/
+  #     dockerfile: Dockerfile
+  #   command: npm run start
+  #   ports:
+  #     - "3000:3000"
