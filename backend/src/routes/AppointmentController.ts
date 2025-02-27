@@ -1,8 +1,8 @@
 import express from "express";
 import AppointmentService from "../services/AppointmentServise";
-import IAppointment from "../types/repositoriesType";
+import { IAppointment }  from "../types/repositoriesType";
 
-let router = express.Router()
+const router = express.Router()
 
 router.get('/appontments', async(req, res)=>{
     try {

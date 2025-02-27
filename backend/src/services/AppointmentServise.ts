@@ -1,5 +1,5 @@
 import AppoinmentRepository from "../repositories/AppointmentRepository"
-import IAppointment from "../types/repositoriesType"
+import { IAppointment } from "../types/repositoriesType"
 
 const getAllAppointments = async ()=>{
     return await AppoinmentRepository.getAllAppointments()
