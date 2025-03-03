@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import Doctor from "./Doctor";
+import Pacient from "./Pacient";
 
 const Schema = mongoose.Schema
 
@@ -9,11 +11,28 @@ const appoinmentSchema = new Schema({
     },
     doctorId:{
         type: String, 
-        require: [true, "DoctorID is required"]
+        require: [true, "DoctorID is required"],
+        validate: {
+            validator: (v:string)=>{
+                const id = new mongoose.Types.ObjectId(v);
+                return Doctor.exists({_id: id})
+            },
+            message: (props: {value:string}) =>
+                `DoctorID ${props.value} not found.`
+        }
+        
     },
     pacientId:{
         type: String, 
-        require: [true, "PacientID is required"]
+        require: [true, "PacientID is required"],
+        validate: {
+            validator: (v:string)=>{
+                const id = new mongoose.Types.ObjectId(v);
+                return Pacient.exists({_id: id})
+            },
+            message: (props: {value:string}) =>
+                `PacientID ${props.value} not found.`
+        }
     },
     createdAt: {
         type: Date,

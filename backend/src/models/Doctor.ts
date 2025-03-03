@@ -31,7 +31,14 @@ const doctorSchema = new Schema({
     }, 
     phone:{
         type: String, 
-        require: [true, "Phone number is required"]
+        require: [true, "Phone number is required"],
+        validate: {
+            validator: (v: string)=>{
+                return /\d{2} 9\d{4}-\d{4}/.test(v)
+            },
+            message: (props: {value:string})=>
+                `${props.value} this is not a valid phone value. Please use the following format 99 91234-5678`
+        }
     },   
     createdAt: {
         type: Date,

@@ -30,9 +30,9 @@ const savePrescription = async ({data, appointmentID, medicine, dosage, instruct
     }
 }
 
-const updatePrescription = async(id: string, {data, appointmentID, medicine, dosage, instruction}: IPrescription)=>{
+const updatePrescription = async(id: string, {data, appointmentID, medicine, dosage, instruction, file}: IPrescription)=>{
     try {
-        return await Prescription.findByIdAndUpdate(id, {data, appointmentID, medicine, dosage, instruction}, {new: true});
+        return await Prescription.findByIdAndUpdate(id, {data, appointmentID, medicine, dosage, instruction, file}, {new: true});
     } catch (error: unknown) {
         if (error instanceof Error) {
             throw new Error(error.message);

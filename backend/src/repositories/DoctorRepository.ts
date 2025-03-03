@@ -54,9 +54,22 @@ const deleteDoctor = async(id: string)=>{
     }
 }
 
+const getDoctorByLogin = async(login: string)=>{
+    try {
+        return await Doctor.findOne({login: login});
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        } else {
+            throw new Error('Ocorreu um erro desconhecido.');
+        }
+    }
+}
+
 const doctorRepository = {
     getAllDoctors,
     getDoctor,
+    getDoctorByLogin,
     saveDoctor,
     updateDoctor,
     deleteDoctor

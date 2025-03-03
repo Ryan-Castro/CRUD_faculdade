@@ -20,9 +20,14 @@ const deleteDoctor = async (id: string)=>{
     return await DoctorRepository.deleteDoctor(id);
 }
 
+const getDoctorByLogin = async (login: string)=>{
+    return await DoctorRepository.getDoctorByLogin(login)
+}
+
 const doctorService = {
     getAllDoctors,
     getDoctor,
+    getDoctorByLogin,
     saveDoctor,
     updateDoctor,
     deleteDoctor

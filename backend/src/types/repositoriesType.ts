@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 interface IAppointment {
     date: string, 
     doctorId: string, 
@@ -22,11 +24,13 @@ interface IPacient {
 }
 
 interface IPrescription {
-    data: Date,
-    appointmentID: number,
+    data?: Date,
+    appointmentID: string,
     medicine: string,
     dosage: string,
     instruction: string,
+    _id?: Types.ObjectId,
+    file?: string
 }
 
 export {IAppointment, IDoctor, IPacient, IPrescription}
