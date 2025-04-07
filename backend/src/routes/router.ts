@@ -31,6 +31,7 @@ router.post('/login', async (req, res)=>{
         const token = Jwt.sign({doctorID: doctor!._id}, 'you-secret-key', {
             expiresIn: '1h',
         })
+        res.cookie('auth', token, {httpOnly: true, maxAge: 7*86480})
         res.status(200).json({token})
     } catch (error) {
         console.log(error)
