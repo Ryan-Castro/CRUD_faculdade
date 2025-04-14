@@ -1,3 +1,4 @@
+
 services:
   mongo:
     image: mongo
@@ -10,8 +11,8 @@ services:
     volumes:
       - ./database:/data/db
   
-  backend:
-    container_name: backend
+  node:
+    container_name: node
     build: 
       context: ./backend/
       dockerfile: Dockerfile
@@ -20,12 +21,16 @@ services:
       - "8090:8090"
     depends_on:
       - mongo
+    volumes:
+      - ./backend/src:/usr/app/src
   
-  # frontend:
-  #   container_name: front
-  #   build: 
-  #     context: ./frontend/
-  #     dockerfile: Dockerfile
-  #   command: npm run start
-  #   ports:
-  #     - "3000:3000"
+  front:
+    container_name: front
+    build: 
+      context: ./frontend/
+      dockerfile: Dockerfile
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/usr/app/src

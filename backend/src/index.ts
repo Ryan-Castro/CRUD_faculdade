@@ -8,6 +8,10 @@ const app = express();
 app.use(json());
 app.use(urlencoded({extended:true}))
 
+db.once('open', ()=>{
+    console.log('Database connected successfully!');
+});
+
 app.use("/", router)
 
 app.listen(8080, ()=>{
