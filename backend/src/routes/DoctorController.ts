@@ -2,6 +2,7 @@ import express from "express";
 import DoctorService from "../services/DoctorServise";
 import { IDoctor }  from "../types/repositoriesType";
 import bcrypt from 'bcrypt';
+import verifyToken from "../middleware/authMiddleware";
 
 const router = express.Router()
 
@@ -38,7 +39,7 @@ router.post('/savedoctor', async(req, res)=>{
     }
 })
 
-router.put('/doctors/:id', async(req, res)=>{
+router.put('/doctors/:id', verifyToken, async(req, res)=>{
     try {
         const {id} = req.params
         const {name, login, password, medicalSpreclty, medicalRegistration, email, phone}: IDoctor = req.body
@@ -50,7 +51,7 @@ router.put('/doctors/:id', async(req, res)=>{
     }
 })
 
-router.delete('/doctors/:id', async(req, res)=>{
+router.delete('/doctors/:id', verifyToken, async(req, res)=>{
     try {
         const {id} = req.params
         const doctor = await DoctorService.deleteDoctor(id);
