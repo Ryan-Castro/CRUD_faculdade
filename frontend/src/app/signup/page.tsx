@@ -12,23 +12,22 @@ export default function SingUp() {
   const InputEmail = useRef<HTMLInputElement>(null)
   const InputPhone = useRef<HTMLInputElement>(null)
 
-  const formData = {
-    name: InputName.current?.value,
-    login: InputLogn.current?.value,
-    password: InputPassword.current?.value,
-    medicalSpreclty: InputMedicalSpreclty.current?.value,
-    medicalRegistration: InputMedicalRegistration.current?.value,
-    email: InputEmail.current?.value,
-    phone: InputPhone.current?.value
-  }
-
+  
   async function SingUp() {
+    const formData = {
+      name: InputName.current?.value,
+      login: InputLogn.current?.value,
+      password: InputPassword.current?.value,
+      medicalSpreclty: InputMedicalSpreclty.current?.value,
+      medicalRegistration: InputMedicalRegistration.current?.value,
+      email: InputEmail.current?.value,
+      phone: InputPhone.current?.value
+    }
     try {
-      await fetch("http://localhost:8080/savedoctor", {
+      await fetch("http://localhost:8080/doctor/savedoctor", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'login'
         },
         body: JSON.stringify(formData)
       }).then(res => res.json()).then(json => {

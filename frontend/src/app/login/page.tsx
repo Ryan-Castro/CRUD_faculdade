@@ -1,13 +1,20 @@
 "use client"
 
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LogIn() {
 
+  const router = useRouter();
   const InputUsername = useRef<HTMLInputElement>(null) 
   const Inputpassword = useRef<HTMLInputElement>(null) 
 
   async function login(){
+
+    const formData = {
+      login: InputUsername.current?.value,
+      password: Inputpassword.current?.value
+    }
     try { 
       await fetch("http://localhost:8080/login", {
         method: "POST",
@@ -15,12 +22,9 @@ export default function LogIn() {
           'Content-Type': 'application/json',
           'Authorization': ''
       },
-        body: `{
-          login: ${InputUsername.current?.value},
-          password: ${Inputpassword.current?.value}
-          }`
+        body: JSON.stringify(formData)
         }).then(res=>res.json()).then(json=>{
-          console.log(json)
+          router.push(`/doctor/${json.id}`);
         })
       } catch (error) {
        console.log(error) 

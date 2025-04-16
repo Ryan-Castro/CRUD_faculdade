@@ -31,18 +31,18 @@ router.post('/login', async (req, res)=>{
         const token = Jwt.sign({doctorID: doctor!._id}, 'you-secret-key', {
             expiresIn: '1h',
         })
-        res.cookie('auth', token, {httpOnly: true, maxAge: 7*86480})
-        res.status(200).json({token})
+        res.cookie('auth', token, {httpOnly: true, maxAge: 7*86480, path: '/'})
+        res.status(200).json({id: doctor!._id})
     } catch (error) {
         console.log(error)
         res.status(500).json({'error': 'Login  failed!'})
     }
 })
 
-router.use('/', verifyToken, appointmentCrontroller);
-router.use('/', doctorController);
-router.use('/', verifyToken, pacientController);
-router.use('/', verifyToken, prescriptionController);
+router.use('/doctor', doctorController);
+router.use('/appointment', verifyToken, appointmentCrontroller);
+router.use('/pacient', verifyToken, pacientController);
+router.use('/prescription', verifyToken, prescriptionController);
 
 
 export default router
