@@ -1,5 +1,6 @@
 "use client"
 
+import AppointmentContainer from "@/components/containers/AppointmentContainer";
 import Image from "next/image";
 import { use, useEffect } from "react";
 
@@ -34,7 +35,9 @@ export default function Doctor({ params }: { params: Promise<{ id: string }> }) 
             <li className="w-full bg-emerald-700 pl-4 py-4">Minha conta</li>
           </ul>
         </div>
-        <div className="w-5/6 h-screen bg-gray-400"></div>
+        <div className="w-5/6 h-screen bg-gray-400">
+          <AppointmentContainer />
+        </div>
       </div>
     </div>
   );
