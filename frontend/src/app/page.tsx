@@ -12,7 +12,7 @@ export default function Home() {
       <div className="w-screen h-11/12 flex">
         <div className="w-4/6 h-screen"></div>
         <div className="w-2/6 h-screen bg-white flex flex-col text-black p-12 pt-60 gap-4">
-          <h1 className="text-3xl">Lorem, ipsum dolor</h1>
+          <h1 className="text-3xl">Loremaaaa, ipsum dolor</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem ipsum maxime perspiciatis corrupti eum quo adipisci fugit quibusdam 
             exercitationem ullam? Voluptate, harum maxime inventore quisquam earum adipisci culpa voluptatum consequuntur.

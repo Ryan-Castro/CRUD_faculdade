@@ -20,7 +20,6 @@ export default function LogIn() {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': ''
       },
         body: JSON.stringify(formData)
         }).then(res=>res.json()).then(json=>{

@@ -32,5 +32,10 @@ services:
     command: npm run dev
     ports:
       - "3000:3000"
-    volumes:
-      - ./frontend/src:/usr/app/src
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend/src/
+          target: /usr/app/src/
+          ignore: 
+            - node_modules/
