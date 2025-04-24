@@ -17,9 +17,9 @@ const getPacient = async (id: string) =>{
     }
 }
 
-const savePacient = async ({name,birthDate,emal,phone}: IPacient)=>{
+const savePacient = async ({name,birthDate,email,phone}: IPacient)=>{
     try {
-        const pacient = new Pacient({name, birthDate, emal, phone});
+        const pacient = new Pacient({name, birthDate, email, phone});
         return await pacient.save();
     } catch (error: unknown) {
         if (error instanceof Error) {
@@ -30,9 +30,9 @@ const savePacient = async ({name,birthDate,emal,phone}: IPacient)=>{
     }
 }
 
-const updatePacient = async(id: string, {name, birthDate, emal, phone}: IPacient)=>{
+const updatePacient = async(id: string, {name, birthDate, email, phone}: IPacient)=>{
     try {
-        return await Pacient.findByIdAndUpdate(id, {name, birthDate, emal, phone}, {new: true});
+        return await Pacient.findByIdAndUpdate(id, {name, birthDate, email, phone}, {new: true});
     } catch (error: unknown) {
         if (error instanceof Error) {
             throw new Error(error.message);

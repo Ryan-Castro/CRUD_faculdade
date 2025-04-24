@@ -3,9 +3,10 @@ import router from "./routes/router";
 import { json, urlencoded } from "body-parser";
 import db from "./database/database";
 import cors from "cors";
+import cookieParser from "cookie-parser"
 
 const app = express();
-
+app.use(cookieParser());
 const allowedOrigins = ['http://localhost:3000'];
 
 app.use(cors({

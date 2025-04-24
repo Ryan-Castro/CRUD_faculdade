@@ -6,7 +6,8 @@ interface JwtPayload {
 }
 
 function verifyToken(req: Request, res: Response, next: NextFunction){
-    const token = req.header('Authorization');
+    const token = req.cookies.auth;
+    console.log(req.cookies)
     if(!token){
         res.send(401).json({error: 'Access Deniod!'});
     }

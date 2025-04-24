@@ -27,8 +27,8 @@ router.get('/getPacient/:id', async(req, res)=>{
 
 router.post('/savePacient', async(req, res)=>{
     try {
-        const {name, birthDate, emal, phone}: IPacient = req.body
-        const Pacient = await PacientService.savePacient({name, birthDate, emal, phone});
+        const {name, birthDate, email, phone}: IPacient = req.body
+        const Pacient = await PacientService.savePacient({name, birthDate, email, phone});
         res.send(Pacient)
     } catch (error) {
         console.log(error)
@@ -39,8 +39,8 @@ router.post('/savePacient', async(req, res)=>{
 router.put('/Pacients/:id', async(req, res)=>{
     try {
         const {id} = req.params
-        const {name, birthDate, emal, phone}: IPacient = req.body
-        const Pacient = await PacientService.updatePacient(id, {name, birthDate, emal, phone});
+        const {name, birthDate, email, phone}: IPacient = req.body
+        const Pacient = await PacientService.updatePacient(id, {name, birthDate, email, phone});
         res.send(Pacient)
     } catch (error) {
         console.log(error)

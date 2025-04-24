@@ -28,10 +28,11 @@ router.post('/login', async (req, res)=>{
             res.status(401).json({error: 'Authentication failed!'});
         }
 
-        const token = Jwt.sign({doctorID: doctor!._id}, 'you-secret-key', {
-            expiresIn: '1h',
-        })
-        res.cookie('auth', token, {httpOnly: true, maxAge: 7*86480, path: '/'})
+        //const token = Jwt.sign({doctorID: doctor!._id}, 'you-secret-key', {
+            //expiresIn: '1h',
+        //})
+        res.cookie('authqqqq', "batata", {httpOnly: false, maxAge: 7*86480, path: '/', secure: true, sameSite: "none"})
+        console.log("banana")
         res.status(200).json({id: doctor!._id})
     } catch (error) {
         console.log(error)

@@ -3,7 +3,7 @@
 import AppointmentContainer from "@/app/components/containers/AppointmentContainer";
 import PacientContainer from "@/app/components/containers/PacientContainer";
 import ProfileContainer from "@/app/components/containers/ProfileContainer";
-import { use, useEffect, useRef, useState } from "react";
+import { use,useEffect , useRef, useState } from "react";
 
 export default function Doctor({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);

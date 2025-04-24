@@ -19,7 +19,7 @@ interface IDoctor {
 interface IPacient {
     name: string
     birthDate: Date
-    emal: string
+    email: string
     phone: string
 }
 
