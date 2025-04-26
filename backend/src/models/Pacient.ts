@@ -11,7 +11,7 @@ const pacientSchema = new Schema({
         type: Date, 
         require: [true, "Birth Date is required"]
     },
-    emal:{
+    email:{
         type: String, 
         require: [true, "Email is required"],
         unique: true,

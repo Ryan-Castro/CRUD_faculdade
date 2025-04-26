@@ -35,11 +35,12 @@ export default function NewUserModal(props:{modalShow:number, handleModalShow: D
         phone
     }
     await fetch(`http://localhost:8080/pacient/savePacient`, {
-            method: "Post",
+            method: "POST",
             credentials: 'include',
+            headers: {'Content-Type': 'application/json',},
             body: JSON.stringify(formData)
-        }).then(res => res.json()).then(json => {
-            console.log(json)
+        }).then(res => res.json()).then(() => {
+            props.handleModalShow(0)
         })
     }
   return (
@@ -50,6 +51,7 @@ export default function NewUserModal(props:{modalShow:number, handleModalShow: D
             <input type="email" className="bg-gray-500" placeholder="E-mail" ref={emailInput}/>
             <input type="text" className="bg-gray-500" placeholder="Telefone" ref={phoneInput}/>
             <input type="button" className="bg-green-500" value="Criar" onClick={createNewUser}/>
+            <input type="button" className="bg-red-500" value="Cancelar" onClick={()=>{props.handleModalShow(0)}}/>
         </div>
     </div>
   );

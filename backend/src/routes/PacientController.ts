@@ -4,7 +4,7 @@ import { IPacient }  from "../types/repositoriesType";
 
 const router = express.Router()
 
-router.get('/Pacients', async(req, res)=>{
+router.get('/getAll', async(req, res)=>{
     try {
         const Pacients = await PacientService.getAllPacients();
         res.send(Pacients)
