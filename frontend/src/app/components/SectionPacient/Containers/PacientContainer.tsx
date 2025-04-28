@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import PacientCard from "../Cards/PacientCard";
-import NewUserModal from "../Modais/NewUserModal";
+import CreatePacientModal from "../Modais/CreatePacientModal";
 import { Pacient } from "@/app/@types/PacientTypes";
+import DeletePacientModal from "../Modais/DeletePacientModal";
 
 
 export default function PacientContainer(props:{containerShow:number}) {
@@ -9,6 +10,15 @@ export default function PacientContainer(props:{containerShow:number}) {
   const refContainer = useRef<HTMLDivElement>(null)
   const [ModalShow, settModalShow] = useState(0)
   const [pacients, settPacients] = useState<Pacient[]>([])
+  const USER = {name: "", birthDate: "", email: "", phone: "",_id: ""}
+  const [pacient, settPacient] = useState<Pacient>({
+    name: "", 
+    birthDate: "", 
+    email: "", 
+    phone: "",
+    _id: ""
+  })
+  
 
   useEffect(()=>{
     if(props.containerShow == 2){
@@ -41,14 +51,16 @@ export default function PacientContainer(props:{containerShow:number}) {
             <input type="text" placeholder="nome do usuario" className="bg-white text-black pl-6 py-2 rounded-xl mr-5"/>
             <button className="bg-green-400 text-black px-6 py-2 rounded-xl">Pesquisar</button>
           </div>
-            <button className="bg-green-400 text-black px-6 py-2 rounded-xl" onClick={()=>{settModalShow(1)}}>Criar Usuário</button>
+            <button className="bg-green-400 text-black px-6 py-2 rounded-xl" onClick={()=>{settModalShow(1); settPacient(USER)}}>Criar Usuário</button>
         </div>
         <div className="w-full bg-white overflow-auto rounded-xl pt-2 shadow">
           {
-            pacients.map((Pacint, key)=><PacientCard key={key} pacient={Pacint} handleModalShow={settModalShow}/>)
+            pacients.map((Pacint, key)=><PacientCard key={key} pacient={Pacint} handleModalShow={settModalShow} handlePacient={settPacient}/>)
           }
         </div>
-        <NewUserModal modalShow={ModalShow} handleModalShow={settModalShow}/>
+        <CreatePacientModal modalShow={ModalShow} handleModalShow={settModalShow} Pacient={pacient}/>
+        <DeletePacientModal modalShow={ModalShow} handleModalShow={settModalShow} Pacient={pacient}/>
+
     </div>
   );
 }

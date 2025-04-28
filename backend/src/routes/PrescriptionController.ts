@@ -54,7 +54,7 @@ router.get('/readPrescription/:id', async(req, res)=>{
     }
 })
 
-router.get('/Prescriptions', async(req, res)=>{
+router.get('/getAll', async(req, res)=>{
     try {
         const Prescriptions = await PrescriptionService.getAllPrescriptions();
         res.send(Prescriptions)

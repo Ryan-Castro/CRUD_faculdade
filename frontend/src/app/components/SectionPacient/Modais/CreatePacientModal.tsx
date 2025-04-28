@@ -1,7 +1,8 @@
+import { Pacient } from "@/app/@types/PacientTypes";
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
 
-export default function NewUserModal(props:{modalShow:number, handleModalShow: Dispatch<SetStateAction<number>>}) {
+export default function NewPacientModal(props:{modalShow:number, handleModalShow: Dispatch<SetStateAction<number>>, Pacient:Pacient}) {
 
   const refModal = useRef<HTMLDivElement>(null)
   const nameInput = useRef<HTMLInputElement>(null)
@@ -17,6 +18,11 @@ export default function NewUserModal(props:{modalShow:number, handleModalShow: D
     };
     refModal.current?.classList.remove('flex');
     refModal.current?.classList.add('hidden');
+    nameInput.current!.value = props.Pacient.name
+    dateInput.current!.value = props.Pacient.birthDate
+    emailInput.current!.value = props.Pacient.email
+    phoneInput.current!.value = props.Pacient.phone
+
   },[props])
 
   async function createNewUser(){
@@ -34,15 +40,27 @@ export default function NewUserModal(props:{modalShow:number, handleModalShow: D
         email, 
         phone
     }
-    await fetch(`http://localhost:8080/pacient/savePacient`, {
-            method: "POST",
-            credentials: 'include',
-            headers: {'Content-Type': 'application/json',},
-            body: JSON.stringify(formData)
-        }).then(res => res.json()).then(() => {
-            props.handleModalShow(0)
-        })
+    if(props.Pacient._id == ""){
+      await fetch(`http://localhost:8080/pacient/savePacient`, {
+        method: "POST",
+        credentials: 'include',
+        headers: {'Content-Type': 'application/json',},
+        body: JSON.stringify(formData)
+      }).then(res => res.json()).then(() => {
+        props.handleModalShow(0)
+        return
+      })
     }
+    await fetch(`http://localhost:8080/pacient/update/${props.Pacient._id}`, {
+      method: "PUT",
+      credentials: 'include',
+      headers: {'Content-Type': 'application/json',},
+      body: JSON.stringify(formData)
+    }).then(res => res.json()).then(() => {
+      props.handleModalShow(0)
+      return
+    })
+  }
   return (
     <div className="modalContainer hidden" ref={refModal}>
         <div className="modalContent flex flex-col">

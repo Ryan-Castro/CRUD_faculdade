@@ -4,7 +4,7 @@ import { IAppointment }  from "../types/repositoriesType";
 
 const router = express.Router()
 
-router.get('/appontments', async(req, res)=>{
+router.get('/getAll', async(req, res)=>{
     try {
         const appontments = await AppointmentService.getAllAppointments();
         res.send(appontments)

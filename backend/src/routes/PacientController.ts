@@ -36,7 +36,7 @@ router.post('/savePacient', async(req, res)=>{
     }
 })
 
-router.put('/Pacients/:id', async(req, res)=>{
+router.put('/update/:id', async(req, res)=>{
     try {
         const {id} = req.params
         const {name, birthDate, email, phone}: IPacient = req.body
@@ -48,7 +48,7 @@ router.put('/Pacients/:id', async(req, res)=>{
     }
 })
 
-router.delete('/Pacients/:id', async(req, res)=>{
+router.delete('/delete/:id', async(req, res)=>{
     try {
         const {id} = req.params
         const Pacient = await PacientService.deletePacient(id);
