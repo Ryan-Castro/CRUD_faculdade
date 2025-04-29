@@ -36,11 +36,11 @@ router.post('/saveAppontment', async(req, res)=>{
     }
 })
 
-router.put('/appontments/:id', async(req, res)=>{
+router.put('/updateAppontments/:id', async(req, res)=>{
     try {
         const {id} = req.params
-        const {date, doctorId, pacientID}: IAppointment = req.body
-        const appontment = await AppointmentService.updateAppointment(id, {date, doctorId, pacientID});
+        const {date, doctorId, pacientID, accomplished}: IAppointment = req.body
+        const appontment = await AppointmentService.updateAppointment(id, {date, doctorId, pacientID, accomplished});
         res.send(appontment)
     } catch (error) {
         console.log(error)

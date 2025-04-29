@@ -1,7 +1,7 @@
 "use client"
 
 import AppointmentContainer from "@/app/components/containers/AppointmentContainer";
-import PacientContainer from "@/app/components/SectionPacient/Containers/PacientContainer";
+import PacientContainer from "@/app/components/PacientSection/Containers/PacientContainer";
 import ProfileContainer from "@/app/components/containers/ProfileContainer";
 import { use,useEffect , useRef, useState } from "react";
 

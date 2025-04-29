@@ -30,9 +30,9 @@ const saveAppontment = async ({date, doctorId, pacientID}: IAppointment)=>{
     }
 }
 
-const updateAppointment = async(id: string, {date, doctorId, pacientID}: IAppointment)=>{
+const updateAppointment = async(id: string, {date, doctorId, pacientID, accomplished}: IAppointment)=>{
     try {
-        return await Appointment.findByIdAndUpdate(id, {date, doctorId, pacientID}, {new: true});
+        return await Appointment.findByIdAndUpdate(id, {date, doctorId, pacientID, accomplished}, {new: true});
     } catch (error: unknown) {
         if (error instanceof Error) {
             throw new Error(error.message);
@@ -41,6 +41,7 @@ const updateAppointment = async(id: string, {date, doctorId, pacientID}: IAppoin
         }
     }
 }
+
 
 const deleteAppointment = async(id: string)=>{
     try {

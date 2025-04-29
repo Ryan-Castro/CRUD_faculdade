@@ -13,9 +13,10 @@ const saveAppontment = async ({date, doctorId, pacientID}: IAppointment)=>{
     return await AppoinmentRepository.saveAppontment({date, doctorId, pacientID});
 }
 
-const updateAppointment = async (id: string, {date, doctorId, pacientID}: IAppointment)=>{
-    return await AppoinmentRepository.updateAppointment(id, {date, doctorId, pacientID});
+const updateAppointment = async (id: string, {date, doctorId, pacientID, accomplished}: IAppointment)=>{
+    return await AppoinmentRepository.updateAppointment(id, {date, doctorId, pacientID, accomplished});
 } 
+
 const deleteAppointment = async (id: string)=>{
     return await AppoinmentRepository.deleteAppointment(id);
 }

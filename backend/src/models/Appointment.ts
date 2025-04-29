@@ -34,6 +34,10 @@ const appoinmentSchema = new Schema({
                 `PacientID ${props.value} not found.`
         }
     },
+    accomplished:{
+        type: Boolean,
+        default: false
+    },
     createdAt: {
         type: Date,
         default: Date.now

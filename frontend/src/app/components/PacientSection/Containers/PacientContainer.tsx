@@ -31,7 +31,7 @@ export default function PacientContainer(props:{containerShow:number}) {
   },[props])
 
   useEffect(()=>{
-    async function getClient() {
+    async function getPacient() {
       await fetch(`http://localhost:8080/pacient/getAll`, {
         method: "GET",
         credentials: 'include',
@@ -40,7 +40,7 @@ export default function PacientContainer(props:{containerShow:number}) {
         settPacients(json)
       })
     }
-    getClient()
+    getPacient()
   },[])
 
 

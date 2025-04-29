@@ -3,7 +3,8 @@ import { Types } from "mongoose";
 interface IAppointment {
     date: string, 
     doctorId: string, 
-    pacientID: string
+    pacientID: string,
+    accomplished?: boolean
 }
 
 interface IDoctor {

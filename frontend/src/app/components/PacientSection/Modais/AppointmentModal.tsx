@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import AppointmentCard from "../Cards/AppointmentCard";
 
 
-export default function DeletePacientModal(props:{modalShow:number, handleModalShow: Dispatch<SetStateAction<number>>, Pacient:Pacient, Doctor:Doctor}) {
+export default function ApponitmentModal(props:{modalShow:number, handleModalShow: Dispatch<SetStateAction<number>>, Pacient:Pacient, Doctor:Doctor}) {
 
   const refModal = useRef<HTMLDivElement>(null)
   const [appointments, setAppointments] = useState<Appointment[]>([])
