@@ -19,23 +19,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage})
 
-router.post('/uploadPrescription/:id', upload.single('file'), async (req, res)=>{
+router.post('/addFile', upload.single('file'), async (req, res)=>{
     try {
-        const { id } = req.params;
-        let prescription = await PrescriptionService.getPrescription(id);
-        
         const file = `./src/prescriptions/${req.file?.originalname}`
-        prescription = await PrescriptionService.updatePrescription(id, {
-            data: prescription!.data!, 
-            appointmentID: prescription!.appointmentID!, 
-            medicine: prescription!.medicine!, 
-            dosage: prescription!.dosage!, 
-            instruction: prescription!.instruction!,
-            _id: prescription!._id,
-            file: file
-        })
-
-        res.status(200).send(prescription)
+        res.status(200).json({link: file})
     } catch (error) {
         console.log(error)
         res.status(500).send(error)
@@ -86,7 +73,7 @@ router.post('/savePrescription', async(req, res)=>{
     }
 })
 
-router.put('/Prescriptions/:id', async(req, res)=>{
+router.put('/update/:id', async(req, res)=>{
     try {
         const {id} = req.params
         const {data, appointmentID, medicine, dosage, instruction}: IPrescription = req.body

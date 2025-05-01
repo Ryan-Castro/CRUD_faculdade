@@ -32,10 +32,10 @@ export default function AppointmentCard(props:{Appointment: Appointment, handleM
             <p>{props.Appointment.data}</p>
           </div>
           <div className="flex gap-4 items-center">
-            <button className="bg-green-400 rounded-2xl px-4 p-1" onClick={()=>{setAppointments(5)}}>Adicionar Prescrição</button>
-            <button className="bg-green-400 rounded-2xl px-4 p-1" onClick={()=>{setAppointments(4)}}>Finalizar</button>
-            <button className="bg-yellow-400 rounded-2xl px-4 p-1" onClick={()=>{setAppointments(2)}}>Remarcar</button>
-            <button className="bg-red-400 rounded-2xl px-4 p-1" onClick={()=>{setAppointments(3)}}>Apagar</button>
+            <button className="bg-green-400 rounded-2xl px-4 p-1" onClick={()=>{setAppointments(4)}}>Adicionar Prescrição</button>
+            <button className="bg-green-400 rounded-2xl px-4 p-1" onClick={()=>{setAppointments(3)}}>Finalizar</button>
+            <button className="bg-yellow-400 rounded-2xl px-4 p-1" onClick={()=>{setAppointments(1)}}>Remarcar</button>
+            <button className="bg-red-400 rounded-2xl px-4 p-1" onClick={()=>{setAppointments(2)}}>Apagar</button>
           </div>
       </div>
     );

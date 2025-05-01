@@ -5,4 +5,5 @@ export type Prescription = {
     dosage:string
     instruction:string
     file: string
+    _id?: string
 }

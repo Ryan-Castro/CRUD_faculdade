@@ -1,16 +1,17 @@
+import { Appointment } from "@/app/@types/AppointmentTypes";
 import { Doctor } from "@/app/@types/DoctorTypes";
 import { Pacient } from "@/app/@types/PacientTypes";
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 
 
-export default function CreateAppointmentModal(props:{modalShow:number, handleModalShow: Dispatch<SetStateAction<number>>, Doctor:Doctor}) {
+export default function CreateAppointmentModal(props:{modalShow:number, handleModalShow: Dispatch<SetStateAction<number>>, Doctor:Doctor, Appointment: Appointment}) {
 
   const refModal = useRef<HTMLDivElement>(null)
   const dateInput = useRef<HTMLInputElement>(null)
   const [searchTerm, setSearchTerm] = useState('');
+  const [idPacient, setIdPacient] = useState('');
   const [allPacient, setAllPacient] = useState<Pacient[]>([]);
   const [suggestions, setSuggestions] = useState<Pacient[]>([]);
-  const [idPacient, setIdPacient] = useState('');
 
   useEffect(()=>{
     if(props.modalShow == 1){
@@ -20,12 +21,19 @@ export default function CreateAppointmentModal(props:{modalShow:number, handleMo
     };
     refModal.current?.classList.remove('flex');
     refModal.current?.classList.add('hidden');
+    dateInput.current!.value = props.Appointment.data
+    setIdPacient(props.Appointment.pacientId);   
 
     async function getPacient() {
         await fetch(`http://localhost:8080/pacient/getAll`, {
           method: "GET",
           credentials: 'include',
         }).then(res => res.json()).then(json => {
+          json.forEach((pacient: Pacient) => {
+            if(props.Appointment.pacientId == pacient._id){
+              setSearchTerm(pacient.name)
+            }
+          });
           setAllPacient(json)
         })
       }
@@ -76,7 +84,7 @@ export default function CreateAppointmentModal(props:{modalShow:number, handleMo
                 {searchTerm && suggestions.length > 0 && (
                     <ul>
                     {suggestions.map(user => (
-                        <li key={user._id} onClick={()=>{setIdPacient(user._id)}}>{user.name}</li>
+                        <li key={user._id} onClick={()=>{setIdPacient(user._id); setSearchTerm(user.name); setSuggestions([])}}>{user.name}</li>
                     ))}
                     </ul>
                 )}

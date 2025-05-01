@@ -3,6 +3,9 @@ import AppointmentCard from "../Cards/AppointmentCard";
 import { Doctor } from "@/app/@types/DoctorTypes";
 import CreateAppointmentModal from "../Modais/CreateAppointmentModal";
 import { Appointment } from "@/app/@types/AppointmentTypes";
+import DeleteAppointmentModal from "../Modais/DeleteAppointmentModal";
+import AccomplishedAppointmentModal from "../Modais/AccomplishedAppointmentModal";
+import HandlePrescriptionModal from "../Modais/HandlePrescriptionModal";
 
 
 export default function AppointmentContainer(props:{containerShow:number, Doctor: Doctor}) {
@@ -10,6 +13,12 @@ export default function AppointmentContainer(props:{containerShow:number, Doctor
   const refContainer = useRef<HTMLDivElement>(null)
   const [ModalShow, settModalShow] = useState(0)
   const [appointments, settAppointments] = useState<Appointment[]>([])
+  const [appointment, settAppointment] = useState<Appointment>({
+    _id: "",
+    data: "",
+    doctorId: "",
+    pacientId: "",
+  })
 
   useEffect(()=>{
     if(props.containerShow == 1){
@@ -42,9 +51,12 @@ export default function AppointmentContainer(props:{containerShow:number, Doctor
             <button className="bg-green-400 text-black px-6 py-2 rounded-xl" onClick={()=>{settModalShow(1)}}>Nova Consulta</button>
         </div>
         <div className="w-full bg-white overflow-auto rounded-xl">
-          {appointments.map((appointment, key)=> <AppointmentCard key={key}/>)}
+          {appointments.map((appointment, key)=> <AppointmentCard key={key} Appointment={appointment} handleAppointment={settAppointment} handleModalShow={settModalShow}/>)}
         </div>
-        <CreateAppointmentModal Doctor={props.Doctor} handleModalShow={settModalShow} modalShow={ModalShow}/>
+        <CreateAppointmentModal Doctor={props.Doctor} handleModalShow={settModalShow} modalShow={ModalShow} Appointment={appointment}/>
+        <DeleteAppointmentModal Appointment={appointment} handleModalShow={settModalShow} modalShow={ModalShow}/>
+        <AccomplishedAppointmentModal Appointment={appointment} handleModalShow={settModalShow} modalShow={ModalShow}/>
+        <HandlePrescriptionModal Appointment={appointment} handleModalShow={settModalShow} modalShow={ModalShow}/>
     </div>
   );
 }

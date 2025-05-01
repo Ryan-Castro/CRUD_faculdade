@@ -3,4 +3,5 @@ export type Appointment = {
     doctorId: string
     pacientId: string
     _id: string
+    accomplished?: boolean
 }

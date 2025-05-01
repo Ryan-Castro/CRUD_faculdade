@@ -2,12 +2,12 @@ import { Appointment } from "@/app/@types/AppointmentTypes";
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
 
-export default function DeletePacientModal(props:{modalShow:number, handleModalShow: Dispatch<SetStateAction<number>>, Appointment:Appointment}) {
+export default function DeleteAppointmentModal(props:{modalShow:number, handleModalShow: Dispatch<SetStateAction<number>>, Appointment:Appointment}) {
 
   const refModal = useRef<HTMLDivElement>(null)
 
   useEffect(()=>{
-    if(props.modalShow == 3){
+    if(props.modalShow == 2){
         refModal.current?.classList.remove('hidden');
         refModal.current?.classList.add('flex');
       return;
